@@ -25,5 +25,14 @@ jobs:
    - name: Docker Login
      run: |
       docker login -u ksarkar123987 -p ${{ env.REG_PASS }} ksarkar123987.azurecr.io
+
+  push:
+   needs: build
+   runs-on: ubuntu-latest
+   steps:
+   - name: Docker push to registry
+     run: |
+      docker tag dockerimage ksarkar123987.azurecr.io/test-repo:test-tag
+      docker push ksarkar123987.azurecr.io/test-repo:test-tag
       
  
