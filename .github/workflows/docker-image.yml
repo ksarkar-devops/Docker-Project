@@ -35,6 +35,11 @@ jobs:
     needs: Build
     runs-on: ubuntu-latest
     steps:
+    - name: Azure login
+      uses: Azure/login@v2.3.0
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
     - name: Connect to AKS
       uses: Azure/cli@v2.1.0
       with:
