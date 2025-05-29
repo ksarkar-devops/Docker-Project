@@ -1,10 +1,7 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 env:
   REG_PASS: ${{ secrets.AZ_REGISTRY_PASSWORD }}
