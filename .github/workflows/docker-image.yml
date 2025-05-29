@@ -11,7 +11,7 @@ env:
 
 jobs:
 
-  build:
+  Build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -29,5 +29,17 @@ jobs:
       run: |
         docker tag dockerimage ksarkar123987.azurecr.io/test-repo:test-tag
         docker push ksarkar123987.azurecr.io/test-repo:test-tag
+
+
+  Deploy:
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Connect to AKS
+      uses: Azure/cli@v2.1.0
+      with:
+        inlineScript: |
+          az account set --subscription 38fc16d4-5534-49b7-8b50-ddc27073c40a
+          az aks get-credentials --resource-group rg --name aks-cluster --overwrite-existing
       
  
