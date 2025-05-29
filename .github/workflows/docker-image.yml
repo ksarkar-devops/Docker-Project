@@ -21,6 +21,6 @@ jobs:
    steps:
    - name: Docker Login
      run: |
-      echo "test login"
+      docker login -u ksarkar123987 -p HTw0ANOvotnoyZ6rKs5IDSbPsxLD9pE6p93+fVlmK++ACRCKglAV ksarkar123987.azurecr.io
       
  
