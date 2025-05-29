@@ -27,7 +27,7 @@ jobs:
       docker login -u ksarkar123987 -p ${{ env.REG_PASS }} ksarkar123987.azurecr.io
 
   push:
-   needs: build
+   needs: login
    runs-on: ubuntu-latest
    steps:
    - name: Docker push to registry
