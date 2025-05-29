@@ -19,7 +19,6 @@ jobs:
    needs: build
    runs-on: ubuntu-latest
    steps:
-   - uses: jdickey/bash@v.1.1.1
    - name: Docker Login
      run: |
       echo "test login"
