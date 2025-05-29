@@ -16,23 +16,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build -t dockerimage .
-  
-  login:
-   needs: build
-   runs-on: ubuntu-latest
-   steps:
-   - name: Docker Login
-     run: |
-      docker login -u ksarkar123987 -p ${{ env.REG_PASS }} ksarkar123987.azurecr.io
-
-  push:
-   needs: login
-   runs-on: ubuntu-latest
-   steps:
-   - name: Docker push to registry
-     run: |
-      docker tag dockerimage ksarkar123987.azurecr.io/test-repo:test-tag
-      docker push ksarkar123987.azurecr.io/test-repo:test-tag
+      run: |
+        docker build -t dockerimage .
+        docker login -u ksarkar123987 -p ${{ env.REG_PASS }} ksarkar123987.azurecr.io
+        docker tag dockerimage ksarkar123987.azurecr.io/test-repo:test-tag
+        docker push ksarkar123987.azurecr.io/test-repo:test-tag
       
  
