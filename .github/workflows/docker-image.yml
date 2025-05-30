@@ -20,12 +20,12 @@ jobs:
 
     - name: Login to the registry
       run: |
-        docker login -u ksarkar12398 -p ${{ env.REG_PASS }} ksarkar12398.azurecr.io
+        docker login -u ${{ vars.REGISTRY_NAME }} -p ${{ env.REG_PASS }} ${{ vars.REGISTRY_NAME }}.azurecr.io
 
     - name: Push image to registry
       run: |
-        docker tag dockerimage ksarkar12398.azurecr.io/test-repo:test-tag
-        docker push ksarkar12398.azurecr.io/test-repo:test-tag
+        docker tag dockerimage ${{ vars.REGISTRY_NAME }}.azurecr.io/${{ vars.REPO_NAME }}:${{ vars.TAG_NAME }}
+        docker push ${{ vars.REGISTRY_NAME }}.azurecr.io/${{ vars.REPO_NAME }}:${{ vars.TAG_NAME }}
 
 
   Deploy:
