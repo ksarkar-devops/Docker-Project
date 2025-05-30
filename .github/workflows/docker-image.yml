@@ -49,5 +49,9 @@ jobs:
       run: |
         kubectl apply -f k8s/nginx.yml
         kubectl get pods
+
+    - name: Describe the deployment
+      run: |
+        kubectl describe replicaset.apps/nginx-replicaset
       
  
