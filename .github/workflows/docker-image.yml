@@ -32,6 +32,9 @@ jobs:
     needs: Build
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
     - name: Azure login
       uses: Azure/login@v2.3.0
       with:
@@ -43,5 +46,6 @@ jobs:
         az aks get-credentials --resource-group rg --name aks-cluster --overwrite-existing
         kubectl get nodes
         ls -R
+        kubectl apply -f k8s/nginx.yml
       
  
