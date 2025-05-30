@@ -37,18 +37,12 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     
-    - name: Connect to AKS
-      uses: Azure/cli@v2.1.0
-      with:
-        inlineScript: |
-          az account set --subscription 719c1e53-b3fd-4af0-99f9-46469a324ca7
-          az aks get-credentials --resource-group rg --name aks-cluster --overwrite-existing
-
     - name: Deploy to AKS
       run: |
         az account set --subscription 719c1e53-b3fd-4af0-99f9-46469a324ca7
         az aks get-credentials --resource-group rg --name aks-cluster --overwrite-existing
         kubectl get nodes
         kubectl get pods
+        kubectl apply -f k8s/nginx.yml
       
  
